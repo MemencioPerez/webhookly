@@ -14,6 +14,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '8'
+          distribution: 'adoptopenjdk'
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
         with:
@@ -34,7 +35,6 @@ jobs:
         with:
           artifacts: build/libs/*.jar
           tag: '${{ github.ref }}'
-          distribution: true
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           
