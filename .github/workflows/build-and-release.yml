@@ -25,7 +25,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Build with Gradle
-        run: ./gradlew fatJar
+        run: |
+          chmod +x ./gradlew./gradlew fatJar
       - name: Create version tag
         run: |
           git tag v${{ github.run_number }}
@@ -37,4 +38,3 @@ jobs:
           tag: '${{ github.ref }}'
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-          
