@@ -24,10 +24,10 @@ jobs:
             '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
       - name: Build with Gradle
-        run: |
-          chmod +x ./gradlew 
-          ./gradlew fatJar
+        run: ./gradlew fatJar
       - name: Create version tag
         run: |
           git tag v${{ github.run_number }}
@@ -36,6 +36,6 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: build/libs/*.jar
-          tag: '${{ github.ref }}'
+          tag: 'v${{ github.run_number }}'
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
