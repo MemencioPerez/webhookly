@@ -1,8 +1,9 @@
 name: Build and Publish Fat .jar to Releases
-'on':
+on:
   push:
     branches:
-      - main
+      - master
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
