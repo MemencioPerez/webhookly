@@ -1,9 +1,9 @@
 name: Build and Publish Fat .jar to Releases
-on:
+'on':
   push:
     branches:
       - master
-  workflow_dispatch:
+  workflow_dispatch: null
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,5 +34,7 @@ jobs:
         with:
           artifacts: build/libs/*.jar
           tag: '${{ github.ref }}'
+          distribution: true
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          
